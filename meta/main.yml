@@ -2,7 +2,7 @@
 galaxy_info:
     role_name: ansible-jdk
     author: sorting-mjatt
-    description: Installs JDK 11 openj9. If `~.zshrc` is present it will add the `JAVA_HOME` environment variable, pointing at the new JDK.
+    description: "Installs JDK 11 openj9. If `~.zshrc` is present it will add the `JAVA_HOME` environment variable, pointing at the new JDK."
   
     # If the issue tracker for your role is not on github, uncomment the
     # next line and provide a value
