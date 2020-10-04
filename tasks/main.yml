@@ -1,0 +1,24 @@
+---
+- name: Tap AdoptOpenJDK/openjdk
+  homebrew_tap:
+    name: AdoptOpenJDK/openjdk
+    state: present
+
+- name: "Install adoptopenjdk11-openj9 JDK"
+  homebrew_cask:
+    name: adoptopenjdk11-openj9
+    state: upgraded
+    greedy: yes
+    update_homebrew: yes
+
+- name: check if rules file exists
+  stat: 
+    path: "{{ lookup('env', 'HOME') }}/.zshrc"
+  register: zshrc_file
+
+- name: Add source .functions to .zshrc, if ~/.zshrc exists
+  lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.zshrc"
+    regexp: "^export JAVA_HOME="
+    line: "export JAVA_HOME=$(/usr/libexec/java_home -v 11)"
+  when: zshrc_file.stat.exists == true
